@@ -1,0 +1,25 @@
+
+{
+  "name": "ai-support-engine",
+  "version": "1.0.0",
+  "description": "Motor inteligente de clasificación de solicitudes de soporte",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arturocs160/ai-support-engine.git"
+  },
+  "keywords": [
+    "ai",
+    "gemini",
+    "support",
+    "classification"
+  ],
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^3.3.0",
+    "dotenv": "^18.0.10"
+  }
+}
