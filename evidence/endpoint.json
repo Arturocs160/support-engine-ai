@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-11-13T04:29:04.992Z",
+  "results": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/api/analyze",
+        "body": {
+          "message": "No puedo iniciar sesion",
+          "mode": "traditional"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "category": "ACCESS",
+          "priority": "MEDIUM",
+          "response": "Verifique sus credenciales y utilice la recuperación de contraseña si es necesario. Si el problema continúa, contacte al equipo de soporte.",
+          "requiresHumanReview": false,
+          "mode": "traditional"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/api/analyze",
+        "body": {
+          "message": "Detecte una filtracion de datos de clientes.",
+          "mode": "traditional"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "category": "SECURITY",
+          "priority": "CRITICAL",
+          "response": "Se requiere la revisión del equipo de seguridad. No comparta contraseñas ni información sensible y reporte el incidente por el canal autorizado.",
+          "requiresHumanReview": true,
+          "mode": "traditional"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/api/analyze",
+        "body": {
+          "message": "Ayuda con mi cuenta",
+          "mode": "unknown"
+        }
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": {
+            "code": "INVALID_MODE",
+            "message": "mode debe ser traditional o generative."
+          }
+        }
+      }
+    }
+  ]
+}

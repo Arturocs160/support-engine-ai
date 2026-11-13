@@ -3,9 +3,15 @@
   "name": "ai-support-engine",
   "version": "1.0.0",
   "description": "Motor inteligente de clasificación de solicitudes de soporte",
-  "main": "index.js",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
-    "test": "node --test"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/*.test.js",
+    "compare": "node scripts/compare.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +26,7 @@
   "type": "module",
   "dependencies": {
     "@google/genai": "^3.3.0",
-    "dotenv": "^18.0.10"
+    "dotenv": "^18.0.10",
+    "express": "^5.1.0"
   }
 }

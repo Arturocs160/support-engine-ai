@@ -129,7 +129,7 @@ function determinePriority(category, message) {
  * @throws {RangeError} Si message está vacío o solo contiene espacios.
  *
  * @example
- * const traditionalEngine = require('./traditional.engine');
+ * import traditionalEngine from './traditional.engine.js';
  * traditionalEngine('No puedo iniciar sesión');
  */
 function traditionalEngine(message) {
@@ -162,4 +162,4 @@ function traditionalEngine(message) {
   };
 }
 
-module.exports = traditionalEngine;
+export default traditionalEngine;

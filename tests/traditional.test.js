@@ -1,9 +1,9 @@
 'use strict';
 
 // Ejecutar las pruebas y mostrar la evidencia: node tests/traditional.test.js
-const assert = require('node:assert/strict');
-const test = require('node:test');
-const traditionalEngine = require('../src/engines/traditional.engine');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import traditionalEngine from '../src/engines/traditional.engine.js';
 
 // Referencias explícitas para casos normales, ambiguos e intentos de confusión.
 const REQUESTS = [
