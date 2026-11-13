@@ -1,2 +1,7 @@
 node_modules/
-.env
+.env*
+!.env.example
+.tools/
+coverage/
+tmp/
+Reto práctico_ AI Support Engine.pdf
