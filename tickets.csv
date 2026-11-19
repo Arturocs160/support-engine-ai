@@ -1,0 +1,201 @@
+message,category
+Mi contraseña caducó mientras estaba de vacaciones. ¿Cómo puedo renovar el acceso?,ACCESS
+Al guardar el borrador desaparecen las notas que agregué al expediente.,BUG
+Estaría bien poder programar el envío del reporte todos los lunes.,FEATURE
+El historial registra un inicio de sesión desde una ciudad en la que nunca he estado.,SECURITY
+Cambié de celular y ya no tengo el autenticador que me pide el portal.,ACCESS
+El historial muestra dos veces cada pago desde la última actualización.,BUG
+¿Podemos tener una vista de calendario para las fechas de entrega?,FEATURE
+Me avisaron que cambié la clave a las tres de la madrugada y yo no lo hice.,SECURITY
+Al entrar al módulo de compras aparece que mi perfil no tiene permisos.,ACCESS
+En la exportación a Excel las fechas del reporte salen un día adelantadas.,BUG
+Propongo que el panel permita fijar las métricas que revisamos a diario.,FEATURE
+Un portal que imita al nuestro está pidiendo las credenciales del personal.,SECURITY
+El código de verificación llega después de que se vence el tiempo para capturarlo.,ACCESS
+La app se cierra al adjuntar fotos tomadas en modo panorámico.,BUG
+Para inventario nos serviría importar productos por lotes desde una hoja de cálculo.,FEATURE
+Apareció una cuenta administradora que nadie de sistemas reconoce.,SECURITY
+La invitación a mi equipo ya expiró. ¿Me la pueden reenviar?,ACCESS
+Busco por número de pedido y el resultado corresponde a otro cliente.,BUG
+Ojalá se pudiera aprobar una solicitud desde la notificación.,FEATURE
+Veo envíos de dinero que no autoricé en el historial de mi cuenta.,SECURITY
+Olvidé la clave del portal y el correo para recuperarla nunca llega.,ACCESS
+El gráfico mensual pone totales negativos aunque todas las ventas están registradas.,BUG
+Sugiero un historial de cambios que muestre quién editó cada registro.,FEATURE
+Perdimos una laptop de trabajo con una sesión abierta en el sistema de ventas.,SECURITY
+Puedo ver mi perfil pero la sección de nómina dice acceso denegado.,ACCESS
+Se congeló la pantalla después de cambiar el tamaño de una columna.,BUG
+Quisiera guardar combinaciones de filtros con un nombre para reutilizarlas.,FEATURE
+La revisión detectó una clave privada dentro de un repositorio público.,SECURITY
+Es mi primer día y aún no han activado mi usuario.,ACCESS
+El botón de enviar permanece gris aunque ya completé todos los campos obligatorios.,BUG
+Sería práctico descargar todos los comprobantes del mes en un solo archivo.,FEATURE
+Varios clientes recibieron una factura falsa desde una dirección que se hace pasar por la nuestra.,SECURITY
+Me suspendieron la cuenta por varios intentos con una contraseña vieja.,ACCESS
+El selector de fecha permite elegir el día 31 de febrero.,BUG
+Por favor agreguen un campo opcional para la referencia interna del pedido.,FEATURE
+Encontré una carpeta de respaldos disponible públicamente con expedientes de usuarios.,SECURITY
+Volví de una licencia y mi cuenta sigue marcada como inactiva.,ACCESS
+La lista regresa al principio cada vez que marco una notificación como leída.,BUG
+¿Hay forma de mostrar dos proyectos lado a lado en una pantalla?,FEATURE
+Están llegando solicitudes para aprobar un inicio de sesión que yo no inicié.,SECURITY
+El proveedor de identidad dice que mi usuario no está asignado a la aplicación.,ACCESS
+El archivo PDF que descarga el módulo de facturas pesa cero bytes.,BUG
+Podríamos tener un atajo de teclado para crear un ticket.,FEATURE
+Se enviaron mensajes desde mi perfil sin que yo usara la aplicación.,SECURITY
+Después del cambio de dominio el portal dejó de aceptar mi correo de trabajo.,ACCESS
+Desde las nueve todas las pantallas quedan cargando y nadie del equipo puede trabajar.,BUG
+Me gustaría programar una alerta cuando el stock baje del mínimo.,FEATURE
+La auditoría muestra que una cuenta de invitado descargó documentos restringidos.,SECURITY
+La liga de recuperación indica que el token ya fue usado. Necesito una nueva.,ACCESS
+El mapa de entregas dibuja los marcadores en un estado distinto al de la dirección.,BUG
+El equipo necesita una vista de solo lectura para mostrar sus avances a clientes.,FEATURE
+El antivirus aisló un archivo malicioso que llegó como adjunto a soporte.,SECURITY
+Me pide un SMS pero el número registrado era el de mi oficina anterior.,ACCESS
+El formulario pierde los acentos cuando guardo el nombre de un contacto.,BUG
+Pongan una opción para ocultar columnas que no usamos.,FEATURE
+Nuestro dominio aparece en una página que se hace pasar por el servicio de pagos.,SECURITY
+El inicio con Google abre otra organización y no encuentro mi espacio de trabajo.,ACCESS
+La opción de archivar mueve el expediente a la papelera.,BUG
+¿Se podría integrar el calendario con Outlook para ver los turnos?,FEATURE
+Me llamaron diciendo que eran de soporte y me pidieron dictarles mi código de verificación.,SECURITY
+Mi jefe aprobó el acceso a finanzas pero todavía no me dejan abrir el módulo.,ACCESS
+Al pasar a la segunda página del catálogo aparecen los mismos productos.,BUG
+Para las sucursales nuevas nos vendría bien duplicar la configuración de una existente.,FEATURE
+Un tercero publicó capturas que incluyen información de nómina.,SECURITY
+"Me sale ""credenciales incorrectas"" aunque acabo de restablecer la contraseña.",ACCESS
+El informe incluye pedidos cancelados aunque desmarqué esa opción.,BUG
+En el listado sería útil seleccionar varios pedidos y cambiarles el estado juntos.,FEATURE
+Mi correo de recuperación se cambió a una dirección que no reconozco.,SECURITY
+No recuerdo con qué correo registré mi cuenta. ¿Cómo puedo identificarlo?,ACCESS
+La vista de impresión corta la última línea de cada recibo.,BUG
+Me hace falta una plantilla personalizable para las respuestas de soporte.,FEATURE
+Los registros muestran cientos de intentos de ingreso a mi cuenta en minutos.,SECURITY
+Intento entrar y me devuelve a la pantalla de autenticación una y otra vez.,ACCESS
+Cuando uso el botón de deshacer se elimina también el cambio anterior.,BUG
+Sugiero incluir francés en el selector de idioma.,FEATURE
+Alguien creó una clave de integración en mi nombre sin mi autorización.,SECURITY
+Me aparece un aviso que dice que el usuario no existe. Ayer el administrador lo dio de alta.,ACCESS
+La carga de un CSV con comillas duplica varios registros al importarlo.,BUG
+Quisiéramos que la app permitiera guardar un borrador sin conexión.,FEATURE
+La revisión de permisos reveló que un perfil externo podía ver la lista de salarios.,SECURITY
+Borré la app de autenticación por accidente y perdí mis códigos de respaldo.,ACCESS
+El saldo del panel tarda una hora en reflejar un pago que ya figura aplicado.,BUG
+¿Pueden hacer que los usuarios elijan el color de sus etiquetas?,FEATURE
+Apareció una regla de reenvío en el correo del equipo. Nadie reconoce haberla creado.,SECURITY
+La liga de activación me marca como pendiente aunque ya confirmé el correo.,ACCESS
+Los correos de confirmación traen una liga que apunta a una página inexistente.,BUG
+Propongo mostrar los horarios de atención en la página del formulario.,FEATURE
+Vimos que se descargó toda la base de contactos desde una cuenta que debía estar suspendida.,SECURITY
+Trabajaba con una cuenta de invitado y hoy el espacio ya no me reconoce.,ACCESS
+En modo oscuro no se distingue el texto de las etiquetas sobre el fondo.,BUG
+El resumen semanal podría incluir una gráfica de asuntos resueltos.,FEATURE
+Una credencial del entorno de producción salió publicada por error en un documento abierto.,SECURITY
+Tengo los datos de ingreso correctos pero olvidé el PIN de seis dígitos.,ACCESS
+El límite de caracteres del comentario cuenta cada letra acentuada como dos.,BUG
+Sería bueno incluir un campo para el peso del paquete al armar un envío.,FEATURE
+Me enviaron por mensaje una fotografía de mi credencial y me pidieron dinero.,SECURITY
+Mi sesión se vence antes de terminar la verificación y me toca empezar de nuevo.,ACCESS
+El sistema suma el descuento al total de la factura en un pedido con envío gratuito.,BUG
+Queremos iniciar sesión mediante el proveedor corporativo para las cuentas nuevas.,FEATURE
+Recibí un aviso de un dispositivo vinculado que nunca he usado.,SECURITY
+Necesito que habiliten mi cuenta de contratista. Ya renovaron mi contrato.,ACCESS
+La aplicación deja la pantalla en blanco al consultar un pedido antiguo.,BUG
+¿Podrían ofrecer una vista compacta para que quepan más filas?,FEATURE
+El sistema registró que descargaron mis datos mientras mi equipo estaba apagado.,SECURITY
+A mi compañero sí le aparece la opción para aprobar solicitudes. ¿Revisan mi rol?,ACCESS
+Al filtrar los pendientes se ocultan también los que vencen hoy.,BUG
+Me gustaría que cada persona pueda ordenar su propio menú.,FEATURE
+Un proceso desconocido empezó a cifrar documentos del servidor de archivos.,SECURITY
+La contraseña temporal que me dieron vence antes de que pueda usarla.,ACCESS
+La notificación de vencimiento se envía a medianoche pese a tener la hora configurada a las ocho.,BUG
+Quiero que el buscador encuentre resultados por nombre de contacto además de por número.,FEATURE
+El monitor reportó conexiones a un dominio malicioso desde una máquina de facturación.,SECURITY
+Cuando entro desde casa el portal dice que mi IP no está permitida.,ACCESS
+"Después de reordenar las filas y pulsar Guardar, el orden anterior vuelve al abrir el listado.",BUG
+¿Se pueden añadir subtítulos a los videos de ayuda?,FEATURE
+Una persona externa puede abrir expedientes de clientes a través de enlaces públicos.,SECURITY
+No me deja entrar con la llave física que registré en la oficina.,ACCESS
+La foto del perfil se ve girada aunque la previsualización estaba derecha.,BUG
+Una función de membresía temporal ayudaría a colaboradores externos.,FEATURE
+El equipo confirmó que el buzón compartido envió invitaciones falsas a los proveedores.,SECURITY
+El código por correo sí me llega pero el formulario lo rechaza en cada intento.,ACCESS
+El botón de subir el archivo devuelve un error 500 para cualquier documento.,BUG
+Quiero poder etiquetar varios contactos en una sola operación.,FEATURE
+Salió en internet un listado con correos y teléfonos que estaba en un reporte interno.,SECURITY
+Ya terminé el registro y me falta confirmar la cuenta para poder entrar.,ACCESS
+La opción de compartir copia la dirección del registro que tenía abierto antes.,BUG
+Solicito un formato alternativo de recibo con el logotipo de cada sucursal.,FEATURE
+Mis códigos de recuperación fueron regenerados por alguien más.,SECURITY
+¿Quién puede aprobar mi ingreso al espacio privado de proyectos?,ACCESS
+El día seleccionado en el calendario se desplaza una columna hacia la izquierda en Safari.,BUG
+En el detalle de un caso estaría bien ver los expedientes relacionados.,FEATURE
+El panel de auditoría da de alta una aplicación con acceso a todos los correos y nadie la aprobó.,SECURITY
+Al intentar abrir el panel me dice que la licencia no está asignada a mi cuenta.,ACCESS
+Se pierde la selección de productos al avanzar al paso de envío.,BUG
+Me interesa recibir un correo al terminar una exportación grande.,FEATURE
+Un empleado que salió hace meses acaba de consultar registros de clientes con su cuenta antigua.,SECURITY
+Quise recuperar mi password pero ya no tengo acceso al buzón de recuperación.,ACCESS
+El valor del campo de moneda se redondea al salir del formulario.,BUG
+Para conciliar pagos ayudaría que el archivo descargado incluya el folio bancario.,FEATURE
+Vi cambios en mi cuenta bancaria de cobro y no solicité ninguna modificación.,SECURITY
+Mi usuario quedó bloqueado al escribir tres veces mal el PIN.,ACCESS
+El campo de búsqueda se borra cada vez que escribo un espacio.,BUG
+Sería útil poder cambiar la zona horaria desde las preferencias.,FEATURE
+Recibí un correo que amenaza con divulgar información interna del equipo.,SECURITY
+Pude iniciar sesión en la web pero en el móvil solo me sale que el usuario está deshabilitado.,ACCESS
+"En la versión para tablet, el menú cubre el botón de confirmar y no deja tocarlo.",BUG
+¿Nos dejan añadir una firma predeterminada a las respuestas del equipo?,FEATURE
+Se perdió un teléfono que tenía datos de clientes guardados en el dispositivo.,SECURITY
+El enlace de invitación dice que corresponde a otro correo y no me deja unirme.,ACCESS
+Los recordatorios semanales se están enviando todos los días.,BUG
+Propongo un botón para copiar el identificador del pedido.,FEATURE
+Un proveedor nos alertó de un supuesto agente nuestro que está solicitando contraseñas.,SECURITY
+Me reasignaron al equipo de ventas y todavía tengo los permisos del puesto anterior.,ACCESS
+"Sale ""operación completada"" al cancelar un pedido pero el estado sigue activo.",BUG
+Haría falta una opción para comparar el inventario de distintas tiendas.,FEATURE
+Las bitácoras muestran que un usuario común cambió roles de administrador sin aprobación.,SECURITY
+Tengo acceso de lectura y necesito permiso para actualizar los expedientes.,ACCESS
+El lector reconoce el código de barras y carga el artículo anterior en la pantalla.,BUG
+Quisiera un tablero con las tareas agrupadas por persona asignada.,FEATURE
+La herramienta de monitoreo detectó que un equipo envió archivos internos a un servidor desconocido.,SECURITY
+El portal me pide cambiar la clave antes de continuar pero no recuerdo la actual.,ACCESS
+La vista previa del reporte funciona pero la impresión agrega una página vacía.,BUG
+¿Pueden incluir una papelera con recuperación durante 30 días?,FEATURE
+Encontraron fichas con datos personales en la caché pública del buscador.,SECURITY
+La notificación para aprobar mi inicio de sesión no aparece en el celular.,ACCESS
+El interruptor de tema oscuro vuelve a la configuración inicial al recargar.,BUG
+Una exportación a JSON facilitaría conectar los reportes con nuestro sistema.,FEATURE
+Un mensaje de texto ofrece restablecer el acceso en una dirección que no pertenece a la empresa.,SECURITY
+Quiero usar mi cuenta del trabajo y la pantalla insiste en autenticarme con la personal.,ACCESS
+La vista de seguimiento muestra el porcentaje arriba de cien al completar una tarea.,BUG
+Me gustaría recibir avisos solo dentro de mi horario laboral.,FEATURE
+El equipo detectó una copia no autorizada del directorio de clientes.,SECURITY
+No puedo abrir mi bandeja compartida desde que cambiaron el grupo de usuarios.,ACCESS
+Subí tres imágenes del producto y la galería repite la primera en las tres posiciones.,BUG
+Necesitamos adjuntar notas de voz a los tickets de campo.,FEATURE
+Me llegó la confirmación de una compra hecha desde mi perfil que nunca realicé.,SECURITY
+El validador de contraseñas no acepta la clave provisional que emitió soporte.,ACCESS
+El reporte de existencias cambia las unidades de cajas a piezas cuando lo descargo.,BUG
+Sugiero permitir ordenar el catálogo por fecha del último cambio de precio.,FEATURE
+Mi sesión sigue activa en un navegador desconocido aunque cerré mis dispositivos.,SECURITY
+Se bloqueó la sesión de mi cuenta de demostración. ¿La pueden habilitar?,ACCESS
+Se oye el sonido de una alerta aunque ya silencié esa conversación.,BUG
+Para la próxima versión quisiera poder ver el formulario antes de publicarlo.,FEATURE
+Aparecieron extensiones que nadie instaló en el navegador de la caja.,SECURITY
+La cuenta aparece pendiente de aprobación desde ayer y sigo sin poder autenticarme.,ACCESS
+El panel abre con el idioma en inglés cada vez que guardo español.,BUG
+Quiero crear un enlace de pago desde la pantalla del pedido.,FEATURE
+Un archivo que descargué del chat de un cliente activó una alerta de malware.,SECURITY
+El administrador me agregó al directorio pero falta el alta en el portal.,ACCESS
+"En la impresora de etiquetas, el margen inferior tapa el número de lote.",BUG
+¿Podrían incluir un buscador de iconos al personalizar el tablero?,FEATURE
+El servicio de correo detectó un envío masivo que no salió de nuestro equipo.,SECURITY
+Me pide escanear un QR para ingresar y se me perdió el dispositivo donde estaba configurado.,ACCESS
+La opción de eliminar un filtro borra todos los filtros que configuré.,BUG
+Nos gustaría repartir automáticamente las solicitudes entre los agentes disponibles.,FEATURE
+Los registros de auditoría se desactivaron desde una cuenta que no estaba de guardia.,SECURITY
+La verificación por llamada cuelga antes de dictarme el código y sigo fuera.,ACCESS
+La app muestra que hay doce mensajes sin leer pero la bandeja está vacía.,BUG
+Ojalá la aplicación tuviera una forma de aumentar el tamaño del texto.,FEATURE
+El enlace de un tablero interno quedó expuesto y vemos visitas de personas ajenas a la empresa.,SECURITY

@@ -10,7 +10,7 @@ export function validateAnalyzeRequest(body) {
     throw new AppError(400, 'INVALID_MESSAGE', 'message debe contener entre 1 y 5000 caracteres.');
   }
   if (!MODES.includes(body.mode)) {
-    throw new AppError(400, 'INVALID_MODE', 'mode debe ser traditional o generative.');
+    throw new AppError(400, 'INVALID_MODE', `mode debe ser uno de estos valores: ${MODES.join(', ')}.`);
   }
   return { message: body.message.trim(), mode: body.mode };
 }

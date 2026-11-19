@@ -26,20 +26,19 @@ const CRITICAL_SECURITY_PATTERNS = [
   /\b(?:explotacion activa|exploit activo|se esta explotando|estan explotando)\b/,
 ];
 
+const SECURITY_PATTERNS = [
+  ...CRITICAL_SECURITY_PATTERNS,
+  /\b(?:vulnerabil\w*|malware|phishing|exploit\w*|xss|csrf|ataques?|ciberataques?|ddos)\b/,
+  /\b(?:incidente|brecha|fallo|falla|error) de seguridad\b/,
+  /\b(?:inyeccion sql|sql injection|security incident|fuerza bruta)\b/,
+  /\b(?:acceso|actividad|inicio de sesion)\b.{0,40}\b(?:no autorizad[oa]|sospechos[oa]|sin autorizacion|sin permiso)\b/,
+  /\b(?:accedio|entro|ingreso)\b.{0,50}\bsin (?:mi )?(?:permiso|autorizacion)\b/,
+];
+
 // Se evalúan en orden. La seguridad siempre tiene precedencia, incluso si el
 // mensaje pide ignorar las reglas o asignar una categoría o prioridad diferente.
 const CATEGORY_RULES = [
-  {
-    category: 'SECURITY',
-    patterns: [
-      ...CRITICAL_SECURITY_PATTERNS,
-      /\b(?:vulnerabil\w*|malware|phishing|exploit\w*|xss|csrf|ataques?|ciberataques?|ddos)\b/,
-      /\b(?:incidente|brecha|fallo|falla|error) de seguridad\b/,
-      /\b(?:inyeccion sql|sql injection|security incident|fuerza bruta)\b/,
-      /\b(?:acceso|actividad|inicio de sesion)\b.{0,40}\b(?:no autorizad[oa]|sospechos[oa]|sin autorizacion|sin permiso)\b/,
-      /\b(?:accedio|entro|ingreso)\b.{0,50}\bsin (?:mi )?(?:permiso|autorizacion)\b/,
-    ],
-  },
+  { category: 'SECURITY', patterns: SECURITY_PATTERNS },
   {
     category: 'ACCESS',
     patterns: [
@@ -116,6 +115,32 @@ function determinePriority(category, message) {
     : DEFAULT_PRIORITIES[category];
 }
 
+function normalizeMessage(message) {
+  return message
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function buildAnalysis(category, normalizedMessage) {
+  return {
+    category,
+    priority: determinePriority(category, normalizedMessage),
+    response: RESPONSES[category],
+    requiresHumanReview: category === 'SECURITY',
+  };
+}
+
+export function buildRuleBasedAnalysis(category, message) {
+  return buildAnalysis(category, normalizeMessage(message));
+}
+
+export function hasSecuritySignal(message) {
+  return matchesAny(normalizeMessage(message), SECURITY_PATTERNS);
+}
+
 /**
  * Clasifica una solicitud mediante reglas locales, sin servicios externos.
  * Los mensajes sin coincidencias se consideran BUG y reciben prioridad según
@@ -136,14 +161,7 @@ function traditionalEngine(message) {
   if (typeof message !== 'string') {
     throw new TypeError('El mensaje debe ser una cadena de texto.');
   }
-
-  const normalizedMessage = message
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-    .trim();
-
+  const normalizedMessage = normalizeMessage(message);
   if (!normalizedMessage) {
     throw new RangeError('El mensaje no puede estar vacío.');
   }
@@ -151,13 +169,8 @@ function traditionalEngine(message) {
   const rule = CATEGORY_RULES.find(({ patterns }) =>
     matchesAny(normalizedMessage, patterns),
   );
-  const category = rule ? rule.category : 'BUG';
-
   return {
-    category,
-    priority: determinePriority(category, normalizedMessage),
-    response: RESPONSES[category],
-    requiresHumanReview: category === 'SECURITY',
+    ...buildAnalysis(rule?.category ?? 'BUG', normalizedMessage),
     mode: 'traditional',
   };
 }
