@@ -4,4 +4,7 @@ node_modules/
 .tools/
 coverage/
 tmp/
+.venv/
+__pycache__/
+ml/artifacts/
 Reto práctico_ AI Support Engine.pdf

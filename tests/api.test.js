@@ -3,6 +3,7 @@ import test from 'node:test';
 import { once } from 'node:events';
 import { createApp } from '../src/server.js';
 import { createGenerativeEngine } from '../src/engines/generative.engine.js';
+import { createMLEngine } from '../src/engines/ml.engine.js';
 import { hasValidAnalysis } from '../src/contracts/analysis.contract.js';
 import { AppError } from '../src/errors/app.error.js';
 
@@ -42,9 +43,68 @@ test('selecciona el generativo y conserva su categoría y prioridad', async (t) 
   assert.deepEqual(body, { category: 'FEATURE', priority: 'LOW', response: 'Evaluaremos la opción de exportar.', requiresHumanReview: false, mode: 'generative' });
 });
 
+test('ML usa la categoría de Python y conserva la revisión de seguridad local', async (t) => {
+  let receivedMessage;
+  const ml = createMLEngine({
+    port: 8123,
+    fetchImpl: async (url, options) => {
+      assert.equal(url, 'http://127.0.0.1:8123/predict');
+      assert.equal(options.method, 'POST');
+      assert.equal(options.redirect, 'manual');
+      receivedMessage = JSON.parse(options.body).message;
+      return Response.json({ category: 'FEATURE' });
+    },
+  });
+  const url = await serve(t, { ml });
+  const { response, body } = await post(url, {
+    message: '  Hay una filtración de datos. password=NO_COMPARTIR  ',
+    mode: 'ml',
+  });
+  assert.equal(response.status, 200);
+  assert.equal(receivedMessage, 'Hay una filtración de datos. password=[REDACTED]');
+  assert.ok(hasValidAnalysis(body));
+  assert.deepEqual(body, {
+    category: 'FEATURE',
+    priority: 'LOW',
+    response: 'Gracias por la sugerencia. Describa la funcionalidad y el problema que resolvería para que el equipo pueda evaluarla.',
+    requiresHumanReview: true,
+    mode: 'ml',
+  });
+});
+
+test('ML aplica revisión humana a la categoría SECURITY predicha', async (t) => {
+  const ml = createMLEngine({ fetchImpl: async () => Response.json({ category: 'SECURITY' }) });
+  const url = await serve(t, { ml });
+  const { body } = await post(url, { message: 'Ayuda con mi cuenta', mode: 'ml' });
+  assert.equal(body.category, 'SECURITY');
+  assert.equal(body.priority, 'HIGH');
+  assert.equal(body.requiresHumanReview, true);
+});
+
+test('ML informa errores del servicio sin afectar otros modos', async (t) => {
+  const outcomes = [
+    [async () => { throw new TypeError('detalle interno'); }, 503, 'ML_UNAVAILABLE'],
+    [async () => new Response('detalle interno', { status: 500 }), 502, 'INVALID_ML_RESPONSE'],
+    [async () => new Response('detalle interno'), 502, 'INVALID_ML_RESPONSE'],
+    [async () => Response.json({ category: 'UNKNOWN' }), 502, 'INVALID_ML_RESPONSE'],
+    [async (_url, { signal }) => new Promise((_resolve, reject) => {
+      signal.addEventListener('abort', () => reject(signal.reason), { once: true });
+    }), 504, 'ML_TIMEOUT'],
+  ];
+  for (const [fetchImpl, status, code] of outcomes) {
+    const url = await serve(t, { ml: createMLEngine({ fetchImpl, timeoutMs: 50 }) });
+    const { response, body } = await post(url, { message: 'Ayuda con mi cuenta', mode: 'ml' });
+    assert.equal(response.status, status);
+    assert.equal(body.error.code, code);
+    assert.ok(!JSON.stringify(body).includes('detalle interno'));
+    assert.equal((await post(url, { message: 'Ayuda con mi cuenta', mode: 'traditional' })).response.status, 200);
+  }
+});
+
 test('rechaza mensajes y modos inválidos antes de invocar motores', async (t) => {
   let calls = 0;
-  const url = await serve(t, { traditional: () => { calls++; }, generative: () => { calls++; } });
+  const engine = () => { calls++; };
+  const url = await serve(t, { traditional: engine, generative: engine, ml: engine });
   const invalid = [null, [], 12, 'texto', {},
     { message: '', mode: 'traditional' }, { message: '   ', mode: 'generative' },
     { message: 12, mode: 'traditional' }, { message: 'x'.repeat(5001), mode: 'traditional' },

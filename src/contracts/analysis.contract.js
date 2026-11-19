@@ -1,6 +1,6 @@
 export const CATEGORIES = Object.freeze(['ACCESS', 'BUG', 'FEATURE', 'SECURITY']);
 export const PRIORITIES = Object.freeze(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL']);
-export const MODES = Object.freeze(['traditional', 'generative']);
+export const MODES = Object.freeze(['traditional', 'generative', 'ml']);
 
 export function hasValidAnalysisFields(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value)

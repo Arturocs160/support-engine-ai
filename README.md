@@ -1,6 +1,6 @@
 # AI Support Engine
 
-Prototipo de clasificación de solicitudes de soporte con un motor tradicional por reglas y un motor generativo conectado realmente a Gemini. Ambos se consumen mediante `POST /api/analyze` y devuelven el mismo contrato JSON.
+Prototipo de clasificación de solicitudes de soporte con tres motores. El tradicional usa reglas, el generativo consulta Gemini y el motor ML usa un clasificador local en Python. Los tres se consumen mediante `POST /api/analyze` y devuelven el mismo contrato JSON.
 
 El reto permite un modelo local o mediante API. Se conserva Gemini y se utiliza `gemini-3.1-flash-lite`, configurable mediante `GEMINI_MODEL`.
 
@@ -12,7 +12,7 @@ El reto permite un modelo local o mediante API. Se conserva Gemini y se utiliza 
 
 ## Instalación
 
-Requisitos: Node.js 24 LTS o superior compatible, npm y una clave de Gemini para el modo generativo. El motor tradicional y las pruebas automatizadas funcionan sin clave ni conexión al proveedor.
+Requisitos: Node.js 24 LTS o superior compatible y npm. El modo generativo necesita una clave de Gemini y el modo ML usa Python 3.12. El motor tradicional y las pruebas automatizadas de Node.js funcionan sin Gemini ni Python.
 
 Desde la raíz del repositorio:
 
@@ -28,6 +28,7 @@ GEMINI_API_KEY=tu_clave_local
 GEMINI_MODEL=gemini-3.1-flash-lite
 PORT=3000
 HOST=127.0.0.1
+ML_PORT=8001
 ```
 
 No compartas la clave en mensajes, capturas o evidencias. `.env` está ignorado por Git. Si falta una clave válida, el servidor y el modo tradicional siguen disponibles; las consultas generativas informan el error.
@@ -76,12 +77,44 @@ Respuesta del motor tradicional:
 
 Para consultar Gemini cambia `mode` a `generative`. Las respuestas generativas reales de los 12 casos se guardan completas en [evidence/results.json](evidence/results.json).
 
-### Contrato
+## Motor ML en Python
+
+Desde la raíz del repositorio, crea un entorno virtual, instala las dependencias y entrena el clasificador. En Windows, desde PowerShell:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r ml/requirements.txt
+.\.venv\Scripts\python.exe ml/train.py
+.\.venv\Scripts\python.exe ml/serve.py
+```
+
+En Linux o macOS:
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r ml/requirements.txt
+.venv/bin/python ml/train.py
+.venv/bin/python ml/serve.py
+```
+
+El entrenamiento lee `tickets.csv`, ajusta el pipeline TF-IDF y regresión logística con el 80 % de los tickets e imprime el reporte de clasificación del 20 % reservado. Los 200 tickets son sintéticos. El reporte mide el desempeño en esa muestra. Usa el mismo entorno virtual para generar y cargar `ml/artifacts/tickets.joblib`, ya que el formato depende de las versiones instaladas. Carga únicamente el modelo generado localmente. [Persistencia de modelos de scikit-learn](https://scikit-learn.org/stable/model_persistence.html)
+
+En otra terminal inicia Express con `npm start` y envía este cuerpo a `POST /api/analyze`:
+
+```json
+{ "message": "Alguien entró a mi cuenta sin autorización", "mode": "ml" }
+```
+
+Python carga el modelo una vez al iniciar y escucha en `127.0.0.1:8001`. Si necesitas otro puerto, usa `ml/serve.py --port 8002` y configura `ML_PORT=8002` en `.env`. Tras reentrenar, reinicia el servicio Python para cargar el modelo nuevo.
+
+El clasificador predice la categoría. Express aplica las reglas de prioridad y selecciona una respuesta fija a partir de esa categoría. También activa la revisión humana ante una predicción `SECURITY` o señales de seguridad en el mensaje original. Antes de enviar el texto a Python, Express oculta secretos reconocidos. El modo ML funciona sin clave de Gemini.
+
+## Contrato
 
 | Campo de entrada | Validación |
 | --- | --- |
 | `message` | Texto obligatorio de 1 a 5000 caracteres después de quitar espacios al inicio y final. |
-| `mode` | Obligatorio: `traditional` o `generative`; distingue mayúsculas de minúsculas. |
+| `mode` | Obligatorio. Acepta `traditional`, `generative` y `ml`. Distingue mayúsculas de minúsculas. |
 
 El cuerpo debe ser un objeto JSON con `Content-Type: application/json` y un tamaño máximo de 32 KB. Los campos adicionales no se utilizan.
 
@@ -111,6 +144,8 @@ Los errores tienen formato `{ "error": { "code": "...", "message": "..." } }`.
 | `503` | Falta de clave, modelo no disponible, rechazo del proveedor o cuota agotada |
 | `504` | Timeout del modelo |
 | `500` | Error interno inesperado, sin detalles sensibles |
+
+Para el motor ML, `503 ML_UNAVAILABLE` indica que Express carece de conexión con el servicio de Python o que `ML_PORT` es inválido. `504 ML_TIMEOUT` indica que la consulta excedió los 5 segundos. `502 INVALID_ML_RESPONSE` indica que el servicio devolvió un error o una predicción inválida.
 
 Cada intento generativo tiene un timeout de 30 segundos. Los errores temporales HTTP 429, 500, 502 y 503 se reintentan una sola vez, con una pausa de un segundo. Los reintentos internos del SDK están desactivados. El timeout, incluido HTTP 408/504 del proveedor, y las respuestas de formato incorrecto no se reintentan. Un fallo de Gemini no se reemplaza con una respuesta tradicional presentada como generativa. Los códigos distinguen modelo no disponible (`MODEL_NOT_FOUND`), acceso rechazado (`MODEL_ACCESS_DENIED`) y límite/cuota (`MODEL_RATE_LIMITED`) sin incluir mensajes crudos del proveedor.
 
