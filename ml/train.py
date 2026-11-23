@@ -27,7 +27,8 @@ def main():
             raise ValueError("usa mensajes no vacíos y las cuatro categorías del contrato")
 
         X_train, X_test, y_train, y_test = train_test_split(
-            messages, categories, test_size=0.2, stratify=categories, random_state=42
+            data["message"], data["category"], test_size=0.2,
+            stratify=data["category"], random_state=42
         )
         if set(y_train) != CATEGORIES or set(y_test) != CATEGORIES:
             raise ValueError("faltan ejemplos de alguna categoría en la división 80/20")
@@ -35,8 +36,8 @@ def main():
         raise SystemExit(f"No se pudo preparar tickets.csv: {error}") from None
 
     model = Pipeline([
-        ("vectorizer", TfidfVectorizer(ngram_range=(1, 2))),
-        ("classifier", LogisticRegression(max_iter=1000)),
+        ("tfidf", TfidfVectorizer(ngram_range=(1, 2))),
+        ("classifier", LogisticRegression(max_iter=1000))
     ])
     model.fit(X_train, y_train)
 
